@@ -18,7 +18,6 @@ echo.
 
 rem Creation of a system restoration point 
 echo [+] Creating a System Restore Point...
-C:\Windows\WinSxS\amd64_microsoft-windows-systemrestore-main_31bf3856ad364e35_10.0.19041.84_none_3e82ed1fe15c67db\rstrui.exe /offline:C:\windows=active > nul
 Wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "%DATE%", 100, 7 > nul
 echo.
 
@@ -124,8 +123,12 @@ defrag.exe C: /U /V > nul
 echo.
 
 echo [+] Enabling Optimal Performances of Windows 10
-powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 > nul 
+powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 > nul
 echo.
+
+rem Clean Hard Drive
+echo [+] Cleaning your Hard Drive...
+cleanmgr /sagerun:65535 
 
 rem Scanning System Files
 echo [+] SFC Scan...
